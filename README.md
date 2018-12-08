@@ -8,6 +8,6 @@ This is a very simple i18n react app with the following packages.
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run start`
 
-### `npm dev`
+### `npm run dev`
