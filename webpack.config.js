@@ -20,6 +20,8 @@ module.exports = {
         loader: 'url-loader?limit=100000'
       }
     ]
-  }
+  },
+  devtool: 'cheap-module-eval-source-map'
+
 };
 
