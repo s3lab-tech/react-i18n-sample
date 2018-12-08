@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 import { persistStore, persistReducer } from 'redux-persist';
 import { createStore } from 'redux';
 import storage from 'redux-persist/lib/storage';
-import { Provider as ReduxProvider } from 'react-redux';
+import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react'
 
 
@@ -47,11 +47,11 @@ const store = createStore(persistedReducer, {
 const persistor = persistStore(store);
 
 ReactDOM.render(
-  <ReduxProvider store={store}>
+  <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <App />
     </PersistGate>
-  </ReduxProvider>,
+  </Provider>,
   document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
