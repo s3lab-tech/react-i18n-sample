@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { connect } from 'react-redux';
 
 import JP from './img/jp.png'
 import US from './img/us.png'
@@ -9,20 +10,11 @@ class App extends Component {
 
   constructor(props){
     super(props);
-    this.state = {
-      lang: 'ja',
-      dic: require("./locales/ja/translation.json")
-    };
-  }
-
-  changeLang = (lang) => {
-    this.setState({
-      lang: lang,
-      dic: require("./locales/" + lang + "/translation.json")
-    })
   }
 
   render() {
+    const {onClickCountryImage} = this.props;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -39,11 +31,11 @@ class App extends Component {
             Learn React
           </a>
 
-          <span>{this.state.dic["title"]}</span>
+          <span>{this.props.dict["title"]}</span>
 
-          <a href="#" onClick={() => this.changeLang("ja")}><img src={JP} /></a><span>JP</span>
+          <a href="#" onClick={() => onClickCountryImage("ja")}><img src={JP} /></a><span>JP</span>
 
-          <a href="#" onClick={() => this.changeLang("en")}><img src={US} /></a><span>US</span>
+          <a href="#" onClick={() => onClickCountryImage("en")}><img src={US} /></a><span>US</span>
 
         </header>
       </div>
@@ -51,4 +43,22 @@ class App extends Component {
   }
 }
 
-export default App;
+// Map Redux state to component props
+function mapStateToProps(state) {
+  return {
+    ...state.dict
+  }
+}
+
+// Map Redux actions to component props
+function mapDispatchToProps(dispatch) {
+  return {
+    onClickCountryImage:(payload) => dispatch({type:'changeDict', payload}),
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
