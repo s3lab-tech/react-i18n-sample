@@ -28,8 +28,11 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            React
           </a>
+          <br />
+          <br />
+          <br />
 
           <span>{this.props.dict["title"]}</span>
 
